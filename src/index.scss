@@ -1,0 +1,24 @@
+@import "./styles/slider.scss";
+
+* {
+  box-sizing: border-box;
+  font-family: Roboto, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+
+  // Kind of temp
+  overflow: hidden;
+
+  main {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
