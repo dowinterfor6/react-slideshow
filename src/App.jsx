@@ -6,8 +6,24 @@ import img2 from "./assets/images/sample-2.jpg";
 
 const App = () => {
   const images = [
-    { url: img1 },
-    { url: img2 },
+    {
+      url:
+        "https://images.pexels.com/photos/2187622/pexels-photo-2187622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    },
+    {
+      url:
+        "https://images.pexels.com/photos/2187662/pexels-photo-2187662.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    },
+    {
+      url:
+        "https://images.pexels.com/photos/5220130/pexels-photo-5220130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    },
+    {
+      url:
+        "https://images.pexels.com/photos/2131687/pexels-photo-2131687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    },
+    // { url: img1 },
+    // { url: img2 },
     {
       url:
         "https://images.pexels.com/photos/3408354/pexels-photo-3408354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -18,12 +34,15 @@ const App = () => {
     },
   ];
 
+  // TODO: Timing function option
   const options = {
     width: 600, //px
     height: 400, //px
     perspective: 1000, //px, > width
-    xGrid: 5,
-    yGrid: 5,
+    rows: 5,
+    cols: 9,
+    rowDelay: 100,
+    colDelay: 100,
   };
 
   return (

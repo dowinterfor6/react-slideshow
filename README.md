@@ -1,6 +1,7 @@
 # TODO
 
 - Black/placeholder while "loading" image during transition
+  - Or find a fix to load image
 - Clickable link
 - Manual controls + progress display?
 - Transition function (delay between right to left)

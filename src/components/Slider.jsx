@@ -4,25 +4,39 @@ import SliderPart from "./SliderPart";
 const Slider = ({ images, options }) => {
   const [rotation, setRotation] = useState(0);
   const rotationRef = useRef();
-  const { width, height, xGrid, yGrid, perspective } = options;
+  const {
+    width,
+    height,
+    rows,
+    cols,
+    perspective,
+    rowDelay,
+    colDelay,
+  } = options;
   const [currSlideshowIdx, setCurrSlideshowIdx] = useState(0);
   const currSlideshowIdxRef = useRef();
 
-  const gridTemplateColumns = `repeat(${xGrid}, 1fr)`;
-  const gridTemplateRows = `repeat(${yGrid}, 1fr)`;
+  const gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  const gridTemplateRows = `repeat(${rows}, 1fr)`;
 
-  // TODO: Images should rotate
+  // TODO: This should be an option
+  const transitionDuration = 1000;
+  // Delay = relative to transitionDuration?
+
   const sliderParts = [];
-  for (let i = 0; i < yGrid; i++) {
-    for (let j = 0; j < xGrid; j++) {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
       const backgroundPosition = {
-        x: (width / xGrid) * j,
-        y: (height / yGrid) * i,
+        x: (width / cols) * j,
+        y: (height / rows) * i,
       };
       const currImages = [
         images[currSlideshowIdx % images.length],
         images[(currSlideshowIdx + 1) % images.length],
       ];
+
+      const transitionDelay =
+        (rows - 1 - j) * rowDelay + (cols - 1 - i) * colDelay;
       // TODO: Am I recreating this component every single time?
       sliderParts.push(
         <SliderPart
@@ -31,6 +45,7 @@ const Slider = ({ images, options }) => {
           width={width}
           height={height}
           backgroundPosition={backgroundPosition}
+          transitionDelay={transitionDelay}
           key={`part-row-${i}-col-${j}`}
         />
       );

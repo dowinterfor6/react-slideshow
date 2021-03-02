@@ -5,6 +5,7 @@ const SliderPart = ({
   rotation,
   backgroundPosition,
   width,
+  transitionDelay,
   height,
 }) => {
   const [isFrontImage, setIsFrontImage] = useState(true);
@@ -37,7 +38,14 @@ const SliderPart = ({
   };
 
   return (
-    <div className="slider" style={{ transform: `rotateY(${rotation}deg)` }}>
+    // This is actually a part, not the whole slider
+    <div
+      className="slider"
+      style={{
+        transform: `rotateY(${rotation}deg)`,
+        transitionDelay: `${transitionDelay}ms`,
+      }}
+    >
       <div className="card front" style={frontStyle}></div>
       <div className="card back" style={backStyle}></div>
     </div>
