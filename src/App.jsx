@@ -41,8 +41,9 @@ const App = () => {
     perspective: 1000, //px, > width
     rows: 5,
     cols: 9,
-    rowDelay: 100,
-    colDelay: 100,
+    rowDelay: 100, //ms
+    colDelay: 100, //ms
+    pauseOnBlur: true, //default: true
   };
 
   return (

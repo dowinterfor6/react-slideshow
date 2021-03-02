@@ -7,3 +7,6 @@
 - Transition function (delay between right to left)
 - Custom shapes
 - Decide what to do with out of focus case
+
+- 4k display white gap?
+- Performance optimization?
