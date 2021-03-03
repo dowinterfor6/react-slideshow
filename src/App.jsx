@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "./components/Slider";
+import WebGlSlider from "./components/WebGlSlider";
 // Need to do this because of bundler
 // import img1 from "./assets/images/sample-1.jpg";
 // import img2 from "./assets/images/sample-2.jpg";
 
 const App = () => {
+  const [isCssSlider, setIsCssSlider] = useState(false);
+
   const images = [
     {
       url:
@@ -52,9 +55,16 @@ const App = () => {
     pauseOnBlur: true, //default: true
   };
 
+  const sliderComponent = isCssSlider ? (
+    <Slider images={images} options={options} />
+  ) : (
+    <WebGlSlider />
+  );
+
   return (
     <div className="App">
-      <Slider images={images} options={options} />
+      <button onClick={() => setIsCssSlider(!isCssSlider)}>Switch</button>
+      {sliderComponent}
     </div>
   );
 };

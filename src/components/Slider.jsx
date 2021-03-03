@@ -58,7 +58,7 @@ const Slider = ({ images, options }) => {
     rotationRef.current = rotation;
     currSlideshowIdxRef.current = currSlideshowIdx;
 
-    setInterval(() => {
+    const slideInterval = setInterval(() => {
       // TODO: Prevents "catch up", but returns false when on second monitor
       if (document.hasFocus() || !pauseOnBlur) {
         const nextRotation = colConfig.fromLeft
@@ -72,6 +72,10 @@ const Slider = ({ images, options }) => {
         currSlideshowIdxRef.current++;
       }
     }, 3000);
+
+    return () => {
+      clearInterval(slideInterval);
+    };
   }, []);
 
   return (
