@@ -10,8 +10,8 @@ const Slider = ({ images, options }) => {
     rows,
     cols,
     perspective,
-    rowDelay,
-    colDelay,
+    rowConfig,
+    colConfig,
     pauseOnBlur = true,
   } = options;
   const [currSlideshowIdx, setCurrSlideshowIdx] = useState(0);
@@ -32,7 +32,12 @@ const Slider = ({ images, options }) => {
         images[(currSlideshowIdx + 1) % images.length],
       ];
 
-      const transitionDelay = (rows - 1 - j) * rowDelay + i * colDelay;
+      const totalColDelay =
+        (colConfig.fromLeft ? j : cols - 1 - j) * colConfig.delay;
+      const totalRowDelay =
+        (rowConfig.fromTop ? i : rows - 1 - i) * rowConfig.delay;
+
+      const transitionDelay = totalColDelay + totalRowDelay;
       // TODO: Am I recreating this component every single time?
       sliderParts.push(
         <SliderPart
@@ -56,8 +61,12 @@ const Slider = ({ images, options }) => {
     setInterval(() => {
       // TODO: Prevents "catch up", but returns false when on second monitor
       if (document.hasFocus() || !pauseOnBlur) {
-        setRotation(rotationRef.current - 180);
-        rotationRef.current -= 180;
+        const nextRotation = colConfig.fromLeft
+          ? rotationRef.current + 180
+          : rotationRef.current - 180;
+
+        setRotation(nextRotation);
+        rotationRef.current = nextRotation;
 
         setCurrSlideshowIdx(currSlideshowIdxRef.current + 1);
         currSlideshowIdxRef.current++;

@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "./components/Slider";
 // Need to do this because of bundler
-import img1 from "./assets/images/sample-1.jpg";
-import img2 from "./assets/images/sample-2.jpg";
+// import img1 from "./assets/images/sample-1.jpg";
+// import img2 from "./assets/images/sample-2.jpg";
 
 const App = () => {
   const images = [
@@ -41,8 +41,14 @@ const App = () => {
     perspective: 1000, //px, > width
     rows: 5,
     cols: 9,
-    rowDelay: 100, //ms
-    colDelay: 100, //ms
+    rowConfig: {
+      fromTop: false, // bool, default: true
+      delay: 100,
+    },
+    colConfig: {
+      fromLeft: true, // bool, default: true
+      delay: 100,
+    },
     pauseOnBlur: true, //default: true
   };
 
