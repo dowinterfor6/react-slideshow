@@ -27,7 +27,7 @@ class Slideshow {
     // TODO: Set size
     // TODO: Set background color
     this.renderer.setClearColor(0xffffff);
-    this.renderer.setPixelRatio(window.devicePixelRatio * 2);
+    // this.renderer.setPixelRatio(window.devicePixelRatio * 2);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.containerElement.appendChild(this.renderer.domElement);
     this.camera.position.z = 500;
