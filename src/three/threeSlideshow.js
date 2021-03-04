@@ -23,8 +23,9 @@ class Slideshow {
       0.1,
       1000
     );
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // TODO: Set size
+    // TODO: Set background color
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor(0xffffff);
     this.containerElement.appendChild(this.renderer.domElement);
@@ -41,13 +42,15 @@ class Slideshow {
     // TODO: Lazy loading?
     // TODO: Use texture.offset?
 
-    const geometry = new THREE.PlaneGeometry(9, 6);
+    const geometry = new THREE.PlaneGeometry(12, 9);
     const texture = new THREE.TextureLoader().load(this.images[0].url);
+    texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
     const material = new THREE.MeshBasicMaterial({
       map: texture,
       side: THREE.FrontSide,
     });
     const texture2 = new THREE.TextureLoader().load(this.images[1].url);
+    texture2.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
     const material2 = new THREE.MeshBasicMaterial({
       map: texture2,
       side: THREE.BackSide,
