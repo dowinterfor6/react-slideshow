@@ -39,12 +39,7 @@ class Slideshow {
   drawInitial() {
     // TODO: Something with loading manager
     // TODO: Lazy loading?
-    // const geometry = new THREE.PlaneGeometry(9, 6);
-    // const texture = new THREE.TextureLoader().load(this.images[0].url);
-    // const material = new THREE.MeshBasicMaterial({ map: texture });
-    // this.plane = new THREE.Mesh(geometry, material);
-    // this.plane.position.z += 0.01;
-    // this.scene.add(this.plane);
+    // TODO: Use texture.offset?
 
     const geometry = new THREE.PlaneGeometry(9, 6);
     const texture = new THREE.TextureLoader().load(this.images[0].url);
@@ -57,18 +52,12 @@ class Slideshow {
       map: texture2,
       side: THREE.BackSide,
     });
-    // const materials = [material, material2];
     this.group = new THREE.Group();
     this.plane = new THREE.Mesh(geometry, material);
     this.plane2 = new THREE.Mesh(geometry, material2);
     this.group.add(this.plane2);
     this.group.add(this.plane);
     this.scene.add(this.group);
-
-    // this.plane2 = new THREE.Mesh(geometry, material2);
-    // this.plane2.position.z -= 0.01;
-    // this.plane2.rotation.y = Math.PI;
-    // this.scene.add(this.plane2);
   }
 
   customAnimate(target) {
@@ -78,11 +67,9 @@ class Slideshow {
       this.isAnimating = false;
       // TODO: This is hardcoded
       this.group.rotation.y = Math.PI;
-      // this.plane2.rotation.y = 0;
     } else {
       target += 0.01;
       this.group.rotation.y += 0.01;
-      // this.plane2.rotation.y += 0.01;
       requestAnimationFrame(this.customAnimate.bind(this, target));
     }
     this.renderer.render(this.scene, this.camera);
