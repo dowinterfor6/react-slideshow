@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import Slider from "./components/Slider";
-import WebGlSlider from "./components/WebGlSlider";
+import React from "react";
+import ThreeSlideshow from "./components/ThreeSlideshow";
+// import Slider from "./components/Slider";
+// import WebGlSlider from "./components/WebGlSlider";
 // Need to do this because of bundler
 // import img1 from "./assets/images/sample-1.jpg";
 // import img2 from "./assets/images/sample-2.jpg";
 
 const App = () => {
-  const [isCssSlider, setIsCssSlider] = useState(false);
-
   const images = [
     {
       url:
@@ -38,35 +37,26 @@ const App = () => {
   ];
 
   // TODO: Timing function option
-  const options = {
-    width: 600, //px
-    height: 400, //px
-    perspective: 1000, //px, > width
-    rows: 5,
-    cols: 9,
-    rowConfig: {
-      fromTop: false, // bool, default: true
-      delay: 100,
-    },
-    colConfig: {
-      fromLeft: true, // bool, default: true
-      delay: 100,
-    },
-    pauseOnBlur: true, //default: true
-  };
+  // const options = {
+  //   width: 600, //px
+  //   height: 400, //px
+  //   perspective: 1000, //px, > width
+  //   rows: 5,
+  //   cols: 9,
+  //   rowConfig: {
+  //     fromTop: false, // bool, default: true
+  //     delay: 100,
+  //   },
+  //   colConfig: {
+  //     fromLeft: true, // bool, default: true
+  //     delay: 100,
+  //   },
+  //   pauseOnBlur: true, //default: true
+  // };
 
-  const sliderComponent = isCssSlider ? (
-    <Slider images={images} options={options} />
-  ) : (
-    <WebGlSlider />
-  );
+  const sliderComponent = <ThreeSlideshow images={images} />;
 
-  return (
-    <div className="App">
-      <button onClick={() => setIsCssSlider(!isCssSlider)}>Switch</button>
-      {sliderComponent}
-    </div>
-  );
+  return <div className="App">{sliderComponent}</div>;
 };
 
 export default App;
