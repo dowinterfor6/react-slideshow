@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Slideshow from "../three/threeSlideshow";
 
-const ThreeSlideshow = ({ images }) => {
+const ThreeSlideshow = ({ images, fullResImages }) => {
   const slideshowContainerRef = useRef();
   const slideshowRef = useRef();
 
@@ -9,7 +9,8 @@ const ThreeSlideshow = ({ images }) => {
     slideshowRef.current = new Slideshow(
       window,
       slideshowContainerRef.current,
-      images
+      // images
+      fullResImages
     );
   }, []);
 
@@ -18,6 +19,7 @@ const ThreeSlideshow = ({ images }) => {
       <button onClick={() => slideshowRef.current.test()}>
         Something lmao
       </button>
+      <img src={images[1].url} style={{ height: 650, width: 940 }} />
     </section>
   );
 };

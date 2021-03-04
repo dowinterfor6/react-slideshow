@@ -3,8 +3,8 @@ import ThreeSlideshow from "./components/ThreeSlideshow";
 // import Slider from "./components/Slider";
 // import WebGlSlider from "./components/WebGlSlider";
 // Need to do this because of bundler
-// import img1 from "./assets/images/sample-1.jpg";
-// import img2 from "./assets/images/sample-2.jpg";
+import img1 from "./assets/images/sample-1.jpg";
+import img2 from "./assets/images/sample-2.jpg";
 
 const App = () => {
   const images = [
@@ -24,17 +24,20 @@ const App = () => {
       url:
         "https://images.pexels.com/photos/2131687/pexels-photo-2131687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     },
-    // { url: img1 },
-    // { url: img2 },
     {
       url:
-        "https://images.pexels.com/photos/3408354/pexels-photo-3408354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/3408354/pexels-photo-3408354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     },
     {
       url:
-        "https://images.pexels.com/photos/2187603/pexels-photo-2187603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/2187603/pexels-photo-2187603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     },
   ];
+  
+  const fullResImages = [
+    { url: img1 },
+    { url: img2 },
+  ]
 
   // TODO: Timing function option
   // const options = {
@@ -54,7 +57,7 @@ const App = () => {
   //   pauseOnBlur: true, //default: true
   // };
 
-  const sliderComponent = <ThreeSlideshow images={images} />;
+  const sliderComponent = <ThreeSlideshow images={images} fullResImages={fullResImages} />;
 
   return <div className="App">{sliderComponent}</div>;
 };

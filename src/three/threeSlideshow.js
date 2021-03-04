@@ -21,7 +21,7 @@ class Slideshow {
       75,
       this.window.innerWidth / this.window.innerHeight,
       0.1,
-      1000
+      2000
     );
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // TODO: Set size
@@ -29,7 +29,7 @@ class Slideshow {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor(0xffffff);
     this.containerElement.appendChild(this.renderer.domElement);
-    this.camera.position.z = 10;
+    this.camera.position.z = 500;
   }
 
   initHelpers() {
@@ -42,15 +42,28 @@ class Slideshow {
     // TODO: Lazy loading?
     // TODO: Use texture.offset?
 
-    const geometry = new THREE.PlaneGeometry(12, 9);
+    const geometry = new THREE.PlaneGeometry(940, 650);
     const texture = new THREE.TextureLoader().load(this.images[0].url);
     texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
+    texture.generateMipmaps = false;
+    texture.minFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
     const material = new THREE.MeshBasicMaterial({
       map: texture,
       side: THREE.FrontSide,
     });
     const texture2 = new THREE.TextureLoader().load(this.images[1].url);
+    // Hacky FlipX
+    texture2.wrapS = THREE.RepeatWrapping;
+    texture2.repeat.x = -1;
+
+    // Gets rid of blurry effect when mid rotation and different distance to camera
     texture2.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
+    // Slightly higher quality but barely
+    // Sharpens image too much?
+    // texture2.generateMipmaps = false;
+    // texture2.minFilter = THREE.LinearFilter;
+    // texture2.needsUpdate = true;
     const material2 = new THREE.MeshBasicMaterial({
       map: texture2,
       side: THREE.BackSide,
